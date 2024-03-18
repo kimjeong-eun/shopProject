@@ -5,32 +5,35 @@
 <mapper namespace="org.zerock.mapper.ReplyMapper">
 
 	<insert id = "insert">
-		insert into tbl_reply (ev_rno, ev_bno, ev_reply, ev_replyer)
-		values(seq_reply.nextval, #{ev_bno}, #{ev_reply}, #{ev_replyer})
+		insert into reply (rno, bno, reply, replyer)
+		values (rno_reply.nextval, #{bno}, #{reply}, #{replyer})
 	</insert>	<!-- 댓글 등록용 쿼리문 주의사항 : bno강 이미 있는 값을 집어 넣어야 한다.  -->
 	
 	<select id = "read" resultType = "org.zerock.domain.ReplyVO">
 	
-		select * from ev_reply where ev_rno = #{ev_rno}
+		select * from reply where rno = #{rno}
 	
 	</select>
 	
 	<delete id = "delete">
 	
-		delete from ev_reply where ev_rno = #{ev_rno}
+		delete from reply where rno = #{rno}
 	
 	</delete>
 	
 	<update id = "update">
 	
-	update ev_reply set reply = #{reply}, ev_updatedate = sysdate where ev_rno = #{ev_rno}
+		update reply set reply = #{reply},
+		updateDate = sysdate where rno = #{rno}
 	
 	</update>
 	
 	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
 	
-	select ev_rno, ev_bno, ev_reply, ev_replyer, ev_replyDate, ev_updatedate 
-	from ev_reply where ev_bno = #{ev_bno} order by ev_rno asc
+	select rno, bno, reply, replyer, replyDate, updateDate 
+	from reply 
+	where bno = #{bno} 
+	order by rno asc
 	
 	</select>
 	

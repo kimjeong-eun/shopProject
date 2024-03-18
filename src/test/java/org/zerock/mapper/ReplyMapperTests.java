@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
 
 import lombok.Setter;
@@ -27,16 +27,17 @@ public class ReplyMapperTests {
 		log.info(mapper);
 	}
 	// 부모 객체 bno값 확인하여 반복 더미데이터를 삽입하는 용도
-		private Long[] bnoArr = { 123L, 125L, 126L, 127L, 128L };
+		private Long[] bnoArr = { 1L, 2L, 3L, 4L, 5L };
 		
 		@Test
 		public void testCreate() { // bno가 있는 값을 확인하여 반복 더미데이터를 삽입
 			
 			IntStream.rangeClosed(1, 10).forEach(i -> {
-				ReplyVO vo = new ReplyVO();	// 빈 객체 생성
+				ReplyVO vo = new ReplyVO();
 			
-				vo.setEv_rno(bnoArr[i % 5]);	// 위에 만든 배열을 5로 나눈 나머지 값을 넣음
-				
+				vo.setBno(bnoArr[i % 5]);	// 위에 만든 배열을 5로 나눈 나머지 값을 넣음
+				vo.setReply("댓글 테스트" + i);
+				vo.setReplyer("kkw" + i);	// 더미 객체 생성용
 				
 				mapper.insert(vo);// 위에서 만든 더미 객체를 mapper에서 insert 작업을 진행
 				
@@ -45,19 +46,46 @@ public class ReplyMapperTests {
 		}
 		
 		@Test
+		public void testList() {
+			Criteria cri = new Criteria();
+			
+			List<ReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
+			
+			log.info("------------------------------------------------");
+			replies.forEach(reply -> log.info(reply));
+		}
+		
+		
+		@Test
 		public void testRead() {
 			
-			Long targetRno = 7L;
+			Long targetRno = 1L;
 			
 			ReplyVO vo = mapper.read(targetRno);
+			
+			log.info("------------------------");
 			
 			log.info(vo);
 		}
 		
 		@Test
+		public void testUpdate() {
+			
+			Long targetRno = 5L;
+			
+			ReplyVO vo = mapper.read(targetRno);
+			
+			vo.setReply("댓글 수정");
+			
+			int count = mapper.update(vo);
+			
+			log.info("수정" + count);
+		}
+		
+		@Test
 		public void testDelete() {
 			
-			Long targetRno = 125L;
+			Long targetRno = 1L;
 			
 			mapper.delete(targetRno);
 			

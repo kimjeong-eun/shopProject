@@ -1,6 +1,10 @@
 package org.zerock.mapper;
 
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
 
 public interface ReplyMapper {
@@ -15,7 +19,11 @@ public interface ReplyMapper {
 	
 	public int update(ReplyVO reply);	// ReplyVo에 있는 rno를 기준으로 댓글을 수정하는 용도
 	
-	
+	public List<ReplyVO> getListWithPaging(
+			@Param("cri") Criteria cri,
+			@Param("bno") Long bno
+			);
+	public int getTotalCount(Criteria cri);
 	
 	
 
