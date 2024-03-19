@@ -1,15 +1,3 @@
-create sequence seq_bd START WITH 30 INCREMENT BY 1 NOCACHE NOCYCLE;	
-
-
-create table ev_board(
-  ev_bno number(10,0) primary key,
-  ev_title varchar2(200) not null,
-  ev_content varchar2(2000) not null,
-  ev_writer varchar2(50) not null,
-  ev_regdate date default sysdate, 
-  ev_updatedate date default sysdate
-);
-
 create table reply(
 	rno number(10,0) primary key,
 	bno number(10,0) not null,
@@ -19,6 +7,18 @@ create table reply(
 	updateDate date default sysdate
 );
 
+create table comments(
+	id number(10, 0) primary key,
+	content nvarchar2(1000) not null
+);
+
+create sequence id_num;
+
+insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트1');
+insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트2');
+insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트3');
+insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트4');
+
 CREATE SEQUENCE rno_reply;
 
 
@@ -26,7 +26,7 @@ drop sequence seq_event_bd;
 drop sequence ev_rep;
 
 
-select * from event_bd;
+select * from comments;
 select * from reply;
 
 drop table event_reply;
