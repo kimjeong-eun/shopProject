@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
+import org.zerock.domain.commentVO;
 import org.zerock.mapper.ReplyMapper;
 
 import lombok.Setter;
@@ -57,6 +58,16 @@ public class ReplyServiceImpl implements ReplyService{
 		
 		return mapper.getListWithPaging(cri, bno);
 	}
+
+	@Override
+	public int postComment(String comment) {
+		
+		log.info("댓글 삽입 :" + comment);
+		
+		return mapper.insertComment(comment) ;
+	}
+
+	
 
 	
 

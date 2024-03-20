@@ -30,35 +30,46 @@
         <textarea class="form-control" rows="5" id="comment"></textarea>
       </div>
       <button type="button" class="btn btn-primary" onclick="submitComment()">댓글 입력</button>
+       <button type="button" class="btn btn-primary" onclick="reviewComment()">리뷰 입력</button>
     </form>
   </div>
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" 
+	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+	crossorigin="anonymous"></script>
+
 <script>
 function submitComment() {
 	
+  var commentContent = document.getElementById("comment").value;
+  
   var csrfHeaderName = "${_csrf.headerName}";  //"X-CSRF-TOKEN"
   var csrfTokenValue = "${_csrf.token}";
 	
-  var commentContent = document.getElementById("comment").value;
   
-	//Ajax를 사용하여 서버로 댓글 내용을 전송합니다.
+	//Ajax를 사용하여 서버로 댓글 내용을 전송
   	$.ajax({
-    type: "POST",
+    type: 'POST',
     beforeSend: function(xhr){   // 헤더에 csrf 값 추가
         xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-     },
-    url: "/replies/saveComment", // 서버에서 댓글을 저장하는 JSP 파일 경로
+    },
+    url: '/saveComments', // 서버에서 댓글을 저장하는 JSP 파일 경로
     data: { content: commentContent },
+    dataType : 'text',
     success: function(response) {
-      // 서버에서 응답을 받으면 콘솔에 출력합니다.
+      // 서버에서 응답을 받으면 콘솔에 출력
       console.log(response);
-    }
-  });
-}
+    	}
+ 	 });
+	
+	
+	
+	}
 </script>
+
 
 </body>
 </html>

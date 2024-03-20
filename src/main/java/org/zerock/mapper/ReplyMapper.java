@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
+import org.zerock.domain.commentVO;
 
 public interface ReplyMapper {
 	// xml와 연결해서 sql 처리
@@ -24,6 +25,8 @@ public interface ReplyMapper {
 			@Param("bno") Long bno
 			);
 	public int getTotalCount(Criteria cri);
+	
+	public int insertComment(String comment);
 	
 	
 

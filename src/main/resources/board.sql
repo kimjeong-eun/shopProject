@@ -9,28 +9,26 @@ create table reply(
 
 create table comments(
 	id number(10, 0) primary key,
-	content nvarchar2(1000) not null
+	content nvarchar2(1000) not null,
+	replyDate date default sysdate,
+	updateDate date default sysdate
 );
 
 create sequence id_num;
+
+create sequence rno_reply;
 
 insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트1');
 insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트2');
 insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트3');
 insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트4');
-
-CREATE SEQUENCE rno_reply;
-
-
-drop sequence seq_event_bd;
-drop sequence ev_rep;
-
+insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트5');
 
 select * from comments;
 select * from reply;
 
-drop table event_reply;
-drop table event_bd;
+drop table comments;
+drop table reply;
 
 INSERT INTO reply (rno, bno, reply, replyer, replyDate, updateDate) VALUES (rno_reply.nextval, 1, '첫 번째 더미 답글입니다.', 'user1', SYSDATE, SYSDATE);
 INSERT INTO reply (rno, bno, reply, replyer, replyDate, updateDate) VALUES (rno_reply.nextval, 2, '두 번째 더미 답글입니다.', 'user2', SYSDATE, SYSDATE);

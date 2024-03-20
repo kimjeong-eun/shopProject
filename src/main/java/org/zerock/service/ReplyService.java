@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
+import org.zerock.domain.commentVO;
 
 public interface ReplyService {
 
@@ -17,8 +18,7 @@ public interface ReplyService {
 	
 	public List<ReplyVO> getList(Criteria cri, Long bno);
 	
-	
-	
+	public int postComment(String comment);
 	
 
 }

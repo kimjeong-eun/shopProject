@@ -37,6 +37,11 @@
 	
 	</select>
 	
+	<insert id = "insertComment">
+		insert into comments (id, content)
+		values (id_num.nextval, #{content})
+	</insert>
+	
 	
 	
 </mapper>

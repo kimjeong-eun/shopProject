@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
+import org.zerock.domain.commentVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -32,7 +33,7 @@ public class ReplyMapperTests {
 		@Test
 		public void testCreate() { // bno가 있는 값을 확인하여 반복 더미데이터를 삽입
 			
-			IntStream.rangeClosed(1, 10).forEach(i -> {
+				IntStream.rangeClosed(1, 10).forEach(i -> {
 				ReplyVO vo = new ReplyVO();
 			
 				vo.setBno(bnoArr[i % 5]);	// 위에 만든 배열을 5로 나눈 나머지 값을 넣음
@@ -88,6 +89,24 @@ public class ReplyMapperTests {
 			Long targetRno = 1L;
 			
 			mapper.delete(targetRno);
+			
+		}
+		private Long[] idArr = { 5L, 6L, 7L, 8L, 9L };
+		private String comment;
+		
+		@Test
+		public void testInsertComment() {
+			
+			IntStream.rangeClosed(1, 10).forEach(i -> {
+			commentVO cvo = new commentVO();
+			
+				cvo.setId(idArr[i % 5]);
+				cvo.setContent("댓글 내용 : " + i);
+				
+				
+				mapper.insertComment(comment);
+				
+			});
 			
 		}
 		
