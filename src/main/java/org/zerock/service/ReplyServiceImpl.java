@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.Criteria;
-import org.zerock.domain.ReplyVO;
 import org.zerock.domain.commentVO;
 import org.zerock.mapper.ReplyMapper;
 
@@ -19,28 +18,29 @@ public class ReplyServiceImpl implements ReplyService{
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
 	
+	
 	@Override
-	public int register(ReplyVO vo) {
+	public int register(commentVO cvo) {
 		
-		log.info("등록 : " + vo);
+		log.info("등록 : " + cvo);
 		
-		return mapper.insert(vo);
+		return mapper.insert(cvo);
 	}
 
 	@Override
-	public ReplyVO get(Long rno) {
+	public commentVO get(Long id) {
 		
-		log.info("조회 : " + rno);
+		log.info("조회 : " + id);
 		
-		return mapper.read(rno);
+		return mapper.read(id);
 	}
 
 	@Override
-	public int modify(ReplyVO vo) {
+	public int modify(commentVO cvo) {
 		
-		log.info("수정 :" + vo);
+		log.info("수정 :" + cvo);
 		
-		return mapper.update(vo);
+		return mapper.update(cvo);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public List<ReplyVO> getList(Criteria cri, Long bno) {
+	public List<commentVO> getList(Criteria cri, Long bno) {
 		
 		log.info("보드에 있는 댓글 리스트 : " + bno);
 		
@@ -66,9 +66,5 @@ public class ReplyServiceImpl implements ReplyService{
 		
 		return mapper.insertComment(comment) ;
 	}
-
-	
-
-	
 
 }

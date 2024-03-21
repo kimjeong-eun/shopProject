@@ -30,12 +30,9 @@
         <textarea class="form-control" rows="5" id="comment"></textarea>
       </div>
       <button type="button" class="btn btn-primary" onclick="submitComment()">댓글 입력</button>
-       <button type="button" class="btn btn-primary" onclick="reviewComment()">리뷰 입력</button>
     </form>
   </div>
 </div>
-
-
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" 
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 

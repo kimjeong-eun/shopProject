@@ -48,7 +48,7 @@
                         <ul>
                             <li class="active"><a href="/">홈</a></li>
                             <li><a href="./shop-grid.html">상품구매</a></li>
-                            <li><a href="./blog.html">리뷰 이벤트</a></li>
+                            <li><a href="./review/board">리뷰 이벤트</a></li>
                             <li><a href="./contact.html">문의게시판</a></li>
                             <li><a href="#">마이페이지</a>
                                 <ul class="header__menu__dropdown">

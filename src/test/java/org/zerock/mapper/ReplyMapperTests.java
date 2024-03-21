@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.Criteria;
-import org.zerock.domain.ReplyVO;
 import org.zerock.domain.commentVO;
 
 import lombok.Setter;
@@ -34,13 +33,13 @@ public class ReplyMapperTests {
 		public void testCreate() { // bno가 있는 값을 확인하여 반복 더미데이터를 삽입
 			
 				IntStream.rangeClosed(1, 10).forEach(i -> {
-				ReplyVO vo = new ReplyVO();
+					commentVO cvo = new commentVO();
 			
-				vo.setBno(bnoArr[i % 5]);	// 위에 만든 배열을 5로 나눈 나머지 값을 넣음
-				vo.setReply("댓글 테스트" + i);
-				vo.setReplyer("kkw" + i);	// 더미 객체 생성용
+				cvo.setId(bnoArr[i % 5]);	// 위에 만든 배열을 5로 나눈 나머지 값을 넣음
+				cvo.setContent("댓글 테스트" + i);
+				cvo.setReplyer("사용자" + i);	// 더미 객체 생성용
 				
-				mapper.insert(vo);// 위에서 만든 더미 객체를 mapper에서 insert 작업을 진행
+				mapper.insert(cvo);// 위에서 만든 더미 객체를 mapper에서 insert 작업을 진행
 				
 			});
 		
@@ -50,7 +49,7 @@ public class ReplyMapperTests {
 		public void testList() {
 			Criteria cri = new Criteria();
 			
-			List<ReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
+			List<commentVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
 			
 			log.info("------------------------------------------------");
 			replies.forEach(reply -> log.info(reply));
@@ -62,11 +61,11 @@ public class ReplyMapperTests {
 			
 			Long targetRno = 1L;
 			
-			ReplyVO vo = mapper.read(targetRno);
+			commentVO cvo = mapper.read(targetRno);
 			
 			log.info("------------------------");
 			
-			log.info(vo);
+			log.info(cvo);
 		}
 		
 		@Test
@@ -74,9 +73,9 @@ public class ReplyMapperTests {
 			
 			Long targetRno = 5L;
 			
-			ReplyVO vo = mapper.read(targetRno);
+			commentVO vo = mapper.read(targetRno);
 			
-			vo.setReply("댓글 수정");
+			vo.setContent("댓글 수정");
 			
 			int count = mapper.update(vo);
 			
@@ -86,13 +85,12 @@ public class ReplyMapperTests {
 		@Test
 		public void testDelete() {
 			
-			Long targetRno = 1L;
+			Long targetid = 1L;
 			
-			mapper.delete(targetRno);
+			mapper.delete(targetid);
 			
 		}
 		private Long[] idArr = { 5L, 6L, 7L, 8L, 9L };
-		private String comment;
 		
 		@Test
 		public void testInsertComment() {
@@ -104,11 +102,12 @@ public class ReplyMapperTests {
 				cvo.setContent("댓글 내용 : " + i);
 				
 				
-				mapper.insertComment(comment);
+				
 				
 			});
 			
 		}
 		
-
 }
+		
+		

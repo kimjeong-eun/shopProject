@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.Criteria;
-import org.zerock.domain.ReplyVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -34,7 +33,7 @@ public class ReplyMapperTests {
 	public void testCreate() { // bno가 있는 값을 확인하여 반복 더미데이터를 삽입
 		
 		IntStream.rangeClosed(1, 10).forEach(i -> {
-			ReplyVO vo = new ReplyVO();	// 빈 객체 생성
+			commentVO vo = new commentVO();	// 빈 객체 생성
 		
 			vo.setBno(bnoArr[i % 5]);	// 위에 만든 배열을 5로 나눈 나머지 값을 넣음
 			vo.setReply("댓글 테스트" + i);
@@ -51,7 +50,7 @@ public class ReplyMapperTests {
 		
 		Long targetRno = 81L;
 		
-		ReplyVO vo = mapper.read(targetRno);
+		commentVO vo = mapper.read(targetRno);
 		
 		log.info(vo);
 	}
@@ -70,7 +69,7 @@ public class ReplyMapperTests {
 		
 		Long targetRno = 10L;
 		
-		ReplyVO vo = mapper.read(targetRno);
+		commentVO vo = mapper.read(targetRno);
 		
 		vo.setReply("Update reply");
 		
@@ -84,7 +83,7 @@ public class ReplyMapperTests {
 		
 		Criteria cri = new Criteria(); 	
 		
-		List<ReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
+		List<commentVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
 		
 		replies.forEach(reply -> log.info(reply));
 	}

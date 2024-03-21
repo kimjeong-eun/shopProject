@@ -1,37 +1,84 @@
-create table reply(
-	rno number(10,0) primary key,
-	bno number(10,0) not null,
-	reply varchar2(1000),
-	replyer varchar2(50) not null,
-	replyDate date default sysdate,
-	updateDate date default sysdate
+create table board (
+  bno number(10,0) primary key,
+  title varchar2(200) not null,
+  content varchar2(2000) not null,
+  writer varchar2(50) not null,
+  regdate date default sysdate, 
+  updatedate date default sysdate
 );
 
-create table comments(
-	id number(10, 0) primary key,
-	content nvarchar2(1000) not null,
-	replyDate date default sysdate,
-	updateDate date default sysdate
+create table comments(					-- 댓글 테이블
+	id number(10, 0) primary key,		-- 사용자 id
+	replyer varchar2(50) not null,		-- 사용자명
+	content nvarchar2(1000) not null,	-- 내용
+	replyDate date default sysdate,		-- 작성일
+	updateDate date default sysdate		-- 수정일
 );
+
+
 
 create sequence id_num;
 
-create sequence rno_reply;
+create sequence bno_seq;
 
-insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트1');
-insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트2');
-insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트3');
-insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트4');
-insert into comments (id, content) values (id_num.nextval, '댓글 입력 테스트5');
+INSERT INTO comments (id, replyer, content) 
+VALUES (id_num.nextval, '사용자1', '댓글 내용1');
+
+INSERT INTO comments (id, replyer, content) 
+VALUES (id_num.nextval, '사용자2', '댓글 내용2');
+
+INSERT INTO comments (id, replyer, content) 
+VALUES (id_num.nextval, '사용자3', '댓글 내용3');
+
+INSERT INTO comments (id, replyer, content) 
+VALUES (id_num.nextval, '사용자4', '댓글 내용4');
+
+INSERT INTO comments (id, replyer, content) 
+VALUES (id_num.nextval, '사용자5', '댓글 내용5');
+
+
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목1', '내용1', '작성자1', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목2', '내용2', '작성자2', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목3', '내용3', '작성자3', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목4', '내용4', '작성자4', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목5', '내용5', '작성자5', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목6', '내용6', '작성자6', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목7', '내용7', '작성자7', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목8', '내용8', '작성자8', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목9', '내용9', '작성자9', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목10', '내용10', '작성자10', sysdate, sysdate);
+
+INSERT INTO board (bno, title, content, writer, regdate, updatedate) 
+VALUES (bno_seq.nextval, '제목11', '내용11', '작성자11', sysdate, sysdate);
+
+
+
+
+
 
 select * from comments;
-select * from reply;
+select * from board;
 
 drop table comments;
-drop table reply;
+drop table board;
 
-INSERT INTO reply (rno, bno, reply, replyer, replyDate, updateDate) VALUES (rno_reply.nextval, 1, '첫 번째 더미 답글입니다.', 'user1', SYSDATE, SYSDATE);
-INSERT INTO reply (rno, bno, reply, replyer, replyDate, updateDate) VALUES (rno_reply.nextval, 2, '두 번째 더미 답글입니다.', 'user2', SYSDATE, SYSDATE);
-INSERT INTO reply (rno, bno, reply, replyer, replyDate, updateDate) VALUES (rno_reply.nextval, 3, '세 번째 더미 답글입니다.', 'user3', SYSDATE, SYSDATE);
-INSERT INTO reply (rno, bno, reply, replyer, replyDate, updateDate) VALUES (rno_reply.nextval, 4, '네 번째 더미 답글입니다.', 'user4', SYSDATE, SYSDATE);
-INSERT INTO reply (rno, bno, reply, replyer, replyDate, updateDate) VALUES (rno_reply.nextval, 5, '다섯 번째 더미 답글입니다.', 'user5', SYSDATE, SYSDATE);
