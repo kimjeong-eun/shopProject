@@ -22,8 +22,14 @@
 	<!-- 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> 
 			<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property> 
 			 -->	
+<<<<<<< HEAD
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>		
 		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@????:1521:XE"></property>	
+=======
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		 <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@43.201.9.52:1521:XE"></property>  
+		
+>>>>>>> refs/remotes/master/review
 		<property name="username" value="shopmanager"></property>
 		<property name="password" value="shop5353"></property>	
 	</bean>

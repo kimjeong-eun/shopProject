@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.ReplyMapper">
+
+	<insert id = "insert">
+		insert into reply (id, replyer, content)
+		values (id_num.nextval, #{replyer}, #{content})
+	</insert>	<!-- 댓글 등록용 쿼리문 주의사항 : bno강 이미 있는 값을 집어 넣어야 한다.  -->
+	
+	<select id = "read" resultType = "org.zerock.domain.commentVO">
+	
+		select * from reply where id = #{id}
+	
+	</select>
+	
+	<delete id = "delete">
+	
+		delete from reply where id = #{id}
+	
+	</delete>
+	
+	<update id = "update">
+	
+		update reply set reply = #{reply},
+		updateDate = sysdate where id = #{id}
+	
+	</update>
+	
+	<select id="getListWithPaging" resultType="org.zerock.domain.commentVO">
+	
+	select id, content, replyer, replyDate, updateDate 
+	from reply 
+	where id = #{id} 
+	order by id asc
+	
+	</select>
+	
+	<insert id = "insertComment">
+		insert into comments (id, replyer, content)
+		values (id_num.nextval, #{replyer}, #{content})
+	</insert>
+	
+	<select id="selectComment" resultType = "org.zerock.domain.commentVO">
+		select * from comments where id = #{id}
+	</select>
+	
+	<update id = "updateComment">
+		
+		update comments set content = #{content},
+		updateDate = sysdate where id = #{id}
+	
+	</update>
+	
+	
+	
+	
+</mapper>
