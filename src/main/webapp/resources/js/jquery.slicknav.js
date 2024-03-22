@@ -273,8 +273,6 @@
                     $($this.btn).next().find('[role="menuitem"]').first().focus();
                     break;
             }
-
-            
         });
 
         $this.mobileNav.on('keydown', '.'+prefix+'_item', function(e) {

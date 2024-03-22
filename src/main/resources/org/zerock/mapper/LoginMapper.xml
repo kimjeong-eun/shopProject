@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mydatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.zerock.mapper.LoginMapper">
+  
+  	<resultMap type="org.zerock.domain.MemberVO" id="loginMap">
+  	
+  		<id property="member_seq" column="member_seq"/>
+  		<result property="member_seq" column="member_seq"/>
+  		<result  property="userid" column="userid"/>
+  		<result property="password" column="password"/> 
+  		<result property="username" column="username"/> 
+  		<result property="birth" column="birth"/>
+  		<result property="phone" column="phone"/>  		
+  		<result property="email" column="email"/>
+  		<result property="address1" column="address1"/>
+  		<result property="address2" column="address2"/>
+  		<result property="address3" column="address3"/>
+  		<result property="enroll_date" column="enroll_date"/>  
+  		<result property="last_update" column="last_update"/>  
+  		
+  		<collection property="authList" resultMap="authMap"></collection>
+  		
+  	</resultMap>
+  	
+  	<resultMap type="org.zerock.domain.AuthVO" id="authMap">
+  		<result property="member_seq" column="member_seq"/>
+  		<result property="auth" column="authority"/>
+  	</resultMap>
+  
+  	<resultMap type="org.zerock.domain.MemberVO" id="validIdMap">
+  		<result property="userid" column="userid"/>
+  		<result property="username" column="username"/>
+  		<result property="email" column="email"/>
+  		<result property="enroll_date" column="enroll_date"/>
+  	</resultMap>
+  	
+  
+   <select id="selectMember" resultMap="loginMap">
+  
+  	select mem.member_seq ,userid , password , username, birth, phone, email, address1, address2, address3
+  		 enroll_date,last_update, auth.authority from shop_member mem left outer join shop_authority auth
+  		 on mem.member_seq = auth.member_seq where mem.userid = #{userid}
+  		 
+   </select>
+       
+   <select id="getIdByNameAndEmail" resultMap="validIdMap">
+   
+   	select userid , username, email, enroll_date from shop_member where email =#{email} and username =#{name}
+   
+   </select>
+   
+   
+   <select id="getPwByIdAndEmail" resultMap="validIdMap">
+   
+   	select userid , username, email, enroll_date from shop_member where email =#{email} and userid =#{id}
+   
+   </select>
+   
+   <!-- 회원가입용 -->
+   <!-- loginmapper 반영된 레코드 수 반환 -->
+   <insert id="insertMember" parameterType="org.zerock.domain.MemberVO">
+		insert into shop_member (
+			member_seq, 
+			userid, 
+			password, 
+			username, 
+			birth, 
+			email, 
+			phone
+		) values (
+			member_seq.nextval, 
+			#{userid},
+			#{password}, 
+			#{username}, 
+			#{birth}, 
+			#{email}, 
+			#{phone}
+		)
+	</insert>
+    
+  </mapper>

@@ -309,8 +309,21 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>      
+		
+		<!-- 메일발송 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 	</dependencies>
+	
     <build>
         <plugins>
             <plugin>
@@ -347,16 +360,15 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
-         
           <!--첫줄 오류 해결 -->
           <!-- sts에서 작업시 밑에 코드 주석 풀어서 사용하세요-->
-              
-			<!--<plugin> 
+          
+		<!-- <plugin> 
 				  <groupId>org.apache.maven.plugins</groupId>
 				  <artifactId>maven-war-plugin</artifactId>
 				  <version>3.3.2</version> 
 				  
-				</plugin> -->
+			</plugin> -->
 			
         </plugins>
     </build>
