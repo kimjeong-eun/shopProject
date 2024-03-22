@@ -33,6 +33,6 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate ); //모델 영역에 저장
 		
-		return "/";
+		return "index";
 	}
 }
